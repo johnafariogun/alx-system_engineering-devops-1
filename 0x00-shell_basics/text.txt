@@ -1,0 +1,6 @@
+for the magic file i compiled it using
+file -C -m school.mgc
+the content was:
+	#!/bin/bash
+	0 string SCHOOL School data
+	!:mime School
