@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 git add .
-git commit -m 'i am learning'
+git commit -m 'i am having issues with the checker'
 git push
