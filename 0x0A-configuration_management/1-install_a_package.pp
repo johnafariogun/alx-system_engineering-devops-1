@@ -1,3 +1,5 @@
+# checks if a package flask is installed and if not installs it using pip3
+
 package { 'python3-pip':
   ensure => installed,
 }
