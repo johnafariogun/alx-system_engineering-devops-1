@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Configures the nginx server to redirect a link to another page.
+# The redirection is configured as a "301 Moved Permanently"
+
+sudo apt-get update
+sudo apt-get install -y nginx
+mkdir -p /var/www/html/
+sudo chmod -R 755 /var/www
+touch /var/www/html/index.html
+echo 'Hello World!' > /var/www/html/index.html
+printf %s "server {
+    listen 80;
+    listen [::]:80 default_server;
+    root   /var/www/html;
+    index  index.html index.htm index.nginx-debian.html;
+    location /redirect_me {
+        return 301 http://cuberule.com/;
+    }
+}" > /etc/nginx/sites-available/default
+
+sudo service nginx restart
