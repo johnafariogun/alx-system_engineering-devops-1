@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# receives a command line argument switches to that as a user and runs whoami
+su "$1" -s /bin/bash -c 'whoami'
