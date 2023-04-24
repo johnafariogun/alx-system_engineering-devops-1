@@ -15,7 +15,7 @@ if __name__ == '__main__':
         id = int(argv[1])
         user_res = requests.get('{}/users/{}'.format(API, id)).json()
         task = requests.get('{}/todos'.format(API)).json()
-        username = user_res.get('name')
+        username = user_res.get('username')
         todos = list(filter(lambda x: x.get('userId') == id, task))
         with open('{}.csv'.format(id), 'w') as f:
             for todo in todos:
