@@ -2,9 +2,9 @@
 """
 Python script that interacts with a REST api and returns information"""
 
-import requests
 from sys import argv
 import json
+import requests
 
 
 API = "https://jsonplaceholder.typicode.com"
