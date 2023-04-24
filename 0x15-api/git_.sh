@@ -1,5 +1,4 @@
-read name
 git add .
-git commit -m '$name'
+git commit -m '$1'
 git push
 
