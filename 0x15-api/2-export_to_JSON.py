@@ -16,7 +16,7 @@ if __name__ == '__main__':
         id = int(argv[1])
         user = requests.get('{}/users/{}'.format(API, id)).json()
         task = requests.get('{}/todos'.format(API)).json()
-        username = user.get('name')
+        username = user.get('username')
         todos = list(filter(lambda x: x.get('userId') == id, task))
         with open('{}.json'.format(id), 'w') as f:
             data = list(map(lambda user:
