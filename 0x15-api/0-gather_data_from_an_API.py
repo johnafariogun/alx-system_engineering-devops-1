@@ -5,23 +5,25 @@ Python script that interacts with a REST api and returns information"""
 import requests
 from sys import argv
 
+
+API = "https://jsonplaceholder.typicode.com"
+"""REST API url"""
+
+
 if __name__ == '__main__':
     if len(argv) > 1:
-        user = argv[1]
-        request = requests.
-        get("https://jsonplaceholder.typicode.com/users/{}"
-            .format(user))
-        name = request.json().get("name")
-        if name is not None:
-            todos = requests.get("https://jsonplaceholder.typicode.com/\
-                    todos?userId={}".format(user)).json()
-            allTasks = len(todos)
-            completed = []
-            for task in todos:
-                if task.get("completed"):
-                    completed.append(task)
-            num = len(completed)
-            print("Employee {} is done with task({}/{}):"
-                  .format(name, num, allTasks))
-            for title in completed:
-                print("\t {}".format(title.get("title")))
+        id = int(argv[1])
+        user_res = requests.get('{}/users/{}'.format(API, id)).json()
+        task = requests.get('{}/todos'.format(API)).json()
+        username = user_res.get('name')
+        todos = list(filter(lambda x: x.get('userId') == id, task))
+        task_done = list(filter(lambda x: x.get('completed'), todos))
+        print(
+            'Employee {} is done with tasks({}/{}):'.format(
+                username,
+                len(task_done),
+                len(todos)
+            )
+        )
+        for todo_done in task_done:
+            print('\t {}'.format(todo_done.get('title')))
